@@ -130,12 +130,12 @@ export default function Home() {
 								I'm a UX nerd and software developer based in London. I'm
 								currently building micro-frontends for{" "}
 								<a
-									className="text-purple-900 dark:text-purple-800 hover:underline"
+									className="text-purple-900 dark:text-purple-400 hover:underline"
 									href="https://www.dunelm.com"
 									target="_blank"
 									rel="noopener noreferrer"
 								>
-									Dunelm
+									Dunelm.com
 								</a>
 							</p>
 							<div className="flex flex-row gap-4">
@@ -145,7 +145,7 @@ export default function Home() {
 									rel="noopener noreferrer"
 									aria-label="LinkedIn"
 								>
-									<LinkedInIcon className="fill-purple-900 dark:fill-purple-500 hover:fill-purple-600 dark:hover:fill-purple-300 transition-colors" />
+									<LinkedInIcon className="fill-purple-900 dark:fill-purple-400 hover:fill-purple-600 dark:hover:fill-purple-300 transition-colors" />
 								</a>
 								<a
 									href="https://github.com/gibbs-em"
@@ -153,7 +153,7 @@ export default function Home() {
 									rel="noopener noreferrer"
 									aria-label="GitHub"
 								>
-									<GitHubIcon className="fill-purple-900 dark:fill-purple-500 hover:fill-purple-600 dark:hover:fill-purple-300 transition-colors" />
+									<GitHubIcon className="fill-purple-900 dark:fill-purple-400 hover:fill-purple-600 dark:hover:fill-purple-300 transition-colors" />
 								</a>
 								<a
 									href="https://www.instagram.com/gibbo_codes/"
@@ -161,7 +161,7 @@ export default function Home() {
 									rel="noopener noreferrer"
 									aria-label="Instagram"
 								>
-									<InstagramIcon className="fill-purple-900 dark:fill-purple-500 hover:fill-purple-600 dark:hover:fill-purple-300 transition-colors" />
+									<InstagramIcon className="fill-purple-900 dark:fill-purple-400 hover:fill-purple-600 dark:hover:fill-purple-300 transition-colors" />
 								</a>
 							</div>
 						</div>
