@@ -30,12 +30,36 @@ export default function Home() {
     "Tailwind CSS",
     "Node.js",
     "Git",
+    "Storybook",
     "CMS integration",
     "Vue.js",
     "Ruby on Rails",
     "UX Design",
     "Figma",
     "Workshop facilitation"
+  ];
+  
+  const softSkills = [
+    { 
+      icon: "💬", 
+      title: "Communication", 
+      description: "I excel at translating complex technical concepts into clear, actionable insights for stakeholders and team members alike." 
+    },
+    { 
+      icon: "👥", 
+      title: "User Focus", 
+      description: "I prioritize user needs in every decision, leveraging UX research and testing to create intuitive, accessible experiences." 
+    },
+    { 
+      icon: "🤝", 
+      title: "Collaboration", 
+      description: "I thrive in cross-functional teams, facilitating workshops and fostering open dialogue to align diverse perspectives toward shared goals." 
+    },
+    { 
+      icon: "🧩", 
+      title: "Problem Solving", 
+      description: "I approach challenges with curiosity and creativity, breaking down complex problems into manageable solutions that deliver real value." 
+    }
   ];
   
   return (
@@ -117,15 +141,100 @@ export default function Home() {
           variants={fadeInUp}
         >
             <h2 className="text-4xl font-bold text-zinc-900 dark:text-zinc-50 mb-12 text-center">Skills</h2>
-            <div className="flex flex-wrap justify-center gap-4">
-              {skills.map((skill) => (
-                <span
-                  key={skill}
-                  className="px-6 py-3 bg-white dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 rounded-full border border-zinc-200 dark:border-zinc-700 hover:border-zinc-400 dark:hover:border-zinc-500 transition-colors cursor-default"
+            
+            {/* Technical and Soft Skills Container */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
+              {/* Technical Skills - Left Column */}
+              <div className="flex flex-col">
+                <h3 className="text-xl font-semibold text-zinc-900 dark:text-zinc-50 mb-6">Technical Skills</h3>
+                <div className="flex flex-wrap gap-4">
+                  {skills.map((skill) => (
+                    <span
+                      key={skill}
+                      className="px-6 py-3 bg-white dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 rounded-full border border-zinc-200 dark:border-zinc-700 hover:border-zinc-400 dark:hover:border-zinc-500 transition-colors cursor-default"
+                    >
+                      {skill}
+                    </span>
+                  ))}
+                </div>
+              </div>
+              
+              {/* Soft Skills - Right Column */}
+              <div className="flex flex-col">
+                <h3 className="text-xl font-semibold text-zinc-900 dark:text-zinc-50 mb-6">Soft Skills</h3>
+                <div className="flex flex-col gap-6">
+                  {softSkills.map((skill) => (
+                    <div key={skill.title} className="flex items-start gap-4">
+                      <span className="text-3xl shrink-0">{skill.icon}</span>
+                      <div className="flex flex-col">
+                        <h4 className="font-semibold text-zinc-900 dark:text-zinc-50 mb-1">{skill.title}</h4>
+                        <p className="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">{skill.description}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+            
+            {/* Brand Banner */}
+            <div className="relative w-full overflow-hidden py-12 border-t border-zinc-200 dark:border-zinc-800">
+              <h3 className="text-xl font-semibold text-zinc-900 dark:text-zinc-50 mb-8 text-center">Brands I've Worked With</h3>
+              <div className="relative">
+                <motion.div
+                  className="flex gap-20 items-center"
+                  animate={{
+                    x: [0, -960],
+                  }}
+                  transition={{
+                    x: {
+                      repeat: Infinity,
+                      repeatType: "loop",
+                      duration: 20,
+                      ease: "linear",
+                    },
+                  }}
                 >
-                  {skill}
-                </span>
-              ))}
+                  {/* First set of brands */}
+                  <div className="shrink-0 w-40 h-20 flex items-center justify-center">
+                    <Image src="/itvx.svg" alt="ITVX" width={160} height={80} className="object-contain brightness-0 dark:brightness-0 dark:invert" />
+                  </div>
+                  <div className="shrink-0 w-40 h-20 flex items-center justify-center">
+                    <Image src="/dunelm.svg" alt="Dunelm" width={160} height={80} className="object-contain brightness-0 dark:brightness-0 dark:invert" />
+                  </div>
+                  <div className="shrink-0 w-40 h-15 flex items-center justify-center">
+                    <Image src="/wellcome.svg" alt="Wellcome Trust" width={120} height={80} className="object-contain brightness-0 dark:brightness-0 dark:invert" />
+                  </div>
+                  <div className="shrink-0 w-40 h-20 flex items-center justify-center">
+                    <Image src="/cruk.svg" alt="Cancer Research UK" width={160} height={80} className="object-contain brightness-0 dark:brightness-0 dark:invert" />
+                  </div>
+                  {/* Duplicate set for seamless loop */}
+                  <div className="shrink-0 w-40 h-20 flex items-center justify-center">
+                    <Image src="/itvx.svg" alt="ITVX" width={160} height={80} className="object-contain brightness-0 dark:brightness-0 dark:invert" />
+                  </div>
+                  <div className="shrink-0 w-40 h-20 flex items-center justify-center">
+                    <Image src="/dunelm.svg" alt="Dunelm" width={160} height={80} className="object-contain brightness-0 dark:brightness-0 dark:invert" />
+                  </div>
+                  <div className="shrink-0 w-40 h-15 flex items-center justify-center">
+                    <Image src="/wellcome.svg" alt="Wellcome Trust" width={120} height={80} className="object-contain brightness-0 dark:brightness-0 dark:invert" />
+                  </div>
+                  <div className="shrink-0 w-40 h-20 flex items-center justify-center">
+                    <Image src="/cruk.svg" alt="Cancer Research UK" width={160} height={80} className="object-contain brightness-0 dark:brightness-0 dark:invert" />
+                  </div>
+                  {/* Third set for continuous visibility */}
+                  <div className="shrink-0 w-40 h-20 flex items-center justify-center">
+                    <Image src="/itvx.svg" alt="ITVX" width={160} height={80} className="object-contain brightness-0 dark:brightness-0 dark:invert" />
+                  </div>
+                  <div className="shrink-0 w-40 h-20 flex items-center justify-center">
+                    <Image src="/dunelm.svg" alt="Dunelm" width={160} height={80} className="object-contain brightness-0 dark:brightness-0 dark:invert" />
+                  </div>
+                  <div className="shrink-0 w-40 h-15 flex items-center justify-center">
+                    <Image src="/wellcome.svg" alt="Wellcome Trust" width={120} height={80} className="object-contain brightness-0 dark:brightness-0 dark:invert" />
+                  </div>
+                  <div className="shrink-0 w-40 h-20 flex items-center justify-center">
+                    <Image src="/cruk.svg" alt="Cancer Research UK" width={160} height={80} className="object-contain brightness-0 dark:brightness-0 dark:invert" />
+                  </div>
+                </motion.div>
+              </div>
             </div>
         </motion.div>
         </section>
