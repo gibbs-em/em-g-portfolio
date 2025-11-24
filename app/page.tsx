@@ -402,7 +402,7 @@ export default function Home() {
 				>
 					<div className="max-w-7xl w-full">
 						<h2 className="text-4xl font-bold text-zinc-900 dark:text-zinc-50 mb-12 text-center">
-							Projects
+							Recent Projects
 						</h2>
 						<div className="grid grid-cols-1 gap-8 max-w-2xl mx-auto">
 							<motion.div
