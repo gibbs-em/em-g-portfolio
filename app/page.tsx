@@ -1,33 +1,43 @@
 "use client";
 import Image from "next/image";
-import { motion } from "motion/react";
+import { motion, type Variants } from "motion/react";
 import { useRef, useState, useEffect } from "react";
+import ProjectCard from "./components/ProjectCard";
 
 export default function Home() {
+  console.log("👋 Thanks for dropping by! If you'd like to get in touch, please reach out to me at elgiblett@gmail.com")
   const imageRef = useRef<HTMLDivElement>(null);
-  const [darkMode, setDarkMode] = useState(false);
-
-  useEffect(() => {
-    const isDark = localStorage.getItem('darkMode') === 'true' || 
-                   (!localStorage.getItem('darkMode') && window.matchMedia('(prefers-color-scheme: dark)').matches);
-    setDarkMode(isDark);
-    if (isDark) {
-      document.documentElement.classList.add('dark');
-    }
-  }, []);
-
-  const toggleDarkMode = () => {
-    const newMode = !darkMode;
-    setDarkMode(newMode);
-    if (newMode) {
-      document.documentElement.classList.add('dark');
-      localStorage.setItem('darkMode', 'true');
-    } else {
-      document.documentElement.classList.remove('dark');
-      localStorage.setItem('darkMode', 'false');
-    }
+  
+  const fadeInUp: Variants = {
+    hidden: {
+      opacity: 0,
+      y: 30,
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.6,
+        ease: "easeOut",
+      },
+    },
   };
-
+  
+  const skills = [
+    "React",
+    "TypeScript",
+    "Next.js",
+    "Tailwind CSS",
+    "Node.js",
+    "Git",
+    "CMS integration",
+    "Vue.js",
+    "Ruby on Rails",
+    "UX Design",
+    "Figma",
+    "Workshop facilitation"
+  ];
+  
   return (
     <div className="min-h-screen bg-white font-sans dark:bg-black">
       {/* Fixed Navigation */}
@@ -47,28 +57,20 @@ export default function Home() {
               Contact
             </a>
           </div>
-          <button
-            onClick={toggleDarkMode}
-            className="p-2 rounded-lg bg-zinc-100 dark:bg-zinc-800 hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-colors"
-            aria-label="Toggle dark mode"
-          >
-            {darkMode ? (
-              <svg className="w-5 h-5 text-zinc-900 dark:text-zinc-100" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
-              </svg>
-            ) : (
-              <svg className="w-5 h-5 text-zinc-900 dark:text-zinc-100" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
-              </svg>
-            )}
-          </button>
+
         </div>
       </nav>
 
       <main className="w-full pt-16">
         {/* About Section */}
         <section id="about" className="min-h-screen flex items-center justify-center px-6 md:px-16 py-16 md:py-32">
-        <div className="flex flex-col items-center gap-8 sm:flex-row sm:items-center sm:gap-12 max-w-7xl">
+        <motion.div
+          className="flex flex-col items-center gap-8 sm:flex-row sm:items-center sm:gap-12 max-w-7xl"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
+          variants={fadeInUp}
+        >
           <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
             <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-zinc-900 dark:text-zinc-50">
               Hi, I'm Em
@@ -102,40 +104,30 @@ export default function Home() {
           >
             <Image src="/portfolio-profile.png" alt="A picture of Em surrounded by cartoon clouds" width={600} height={600}/>
           </motion.div>
-        </div>
+        </motion.div>
         </section>
 
         {/* Skills Section */}
         <section id="skills" className="min-h-screen flex items-center justify-center px-6 md:px-16 py-20 bg-zinc-50 dark:bg-zinc-900">
-          <div className="max-w-7xl w-full">
+        <motion.div
+          className="max-w-7xl w-full"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
+          variants={fadeInUp}
+        >
             <h2 className="text-4xl font-bold text-zinc-900 dark:text-zinc-50 mb-12 text-center">Skills</h2>
             <div className="flex flex-wrap justify-center gap-4">
-              <span className="px-6 py-3 bg-white dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 rounded-full border border-zinc-200 dark:border-zinc-700 hover:border-zinc-400 dark:hover:border-zinc-500 transition-colors cursor-default">
-                React
-              </span>
-              <span className="px-6 py-3 bg-white dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 rounded-full border border-zinc-200 dark:border-zinc-700 hover:border-zinc-400 dark:hover:border-zinc-500 transition-colors cursor-default">
-                TypeScript
-              </span>
-              <span className="px-6 py-3 bg-white dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 rounded-full border border-zinc-200 dark:border-zinc-700 hover:border-zinc-400 dark:hover:border-zinc-500 transition-colors cursor-default">
-                Next.js
-              </span>
-              <span className="px-6 py-3 bg-white dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 rounded-full border border-zinc-200 dark:border-zinc-700 hover:border-zinc-400 dark:hover:border-zinc-500 transition-colors cursor-default">
-                Tailwind CSS
-              </span>
-              <span className="px-6 py-3 bg-white dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 rounded-full border border-zinc-200 dark:border-zinc-700 hover:border-zinc-400 dark:hover:border-zinc-500 transition-colors cursor-default">
-                Node.js
-              </span>
-              <span className="px-6 py-3 bg-white dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 rounded-full border border-zinc-200 dark:border-zinc-700 hover:border-zinc-400 dark:hover:border-zinc-500 transition-colors cursor-default">
-                Git
-              </span>
-              <span className="px-6 py-3 bg-white dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 rounded-full border border-zinc-200 dark:border-zinc-700 hover:border-zinc-400 dark:hover:border-zinc-500 transition-colors cursor-default">
-                UX Design
-              </span>
-              <span className="px-6 py-3 bg-white dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 rounded-full border border-zinc-200 dark:border-zinc-700 hover:border-zinc-400 dark:hover:border-zinc-500 transition-colors cursor-default">
-                Figma
-              </span>
+              {skills.map((skill) => (
+                <span
+                  key={skill}
+                  className="px-6 py-3 bg-white dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 rounded-full border border-zinc-200 dark:border-zinc-700 hover:border-zinc-400 dark:hover:border-zinc-500 transition-colors cursor-default"
+                >
+                  {skill}
+                </span>
+              ))}
             </div>
-          </div>
+        </motion.div>
         </section>
 
         {/* Projects Section */}
@@ -143,71 +135,48 @@ export default function Home() {
           <div className="max-w-7xl w-full">
             <h2 className="text-4xl font-bold text-zinc-900 dark:text-zinc-50 mb-12 text-center">Projects</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {/* Project Card 1 */}
-              <div className="bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-lg overflow-hidden hover:shadow-lg transition-shadow">
-                <div className="h-48 bg-linear-to-br from-blue-400 to-blue-600 dark:from-blue-600 dark:to-blue-800"></div>
-                <div className="p-6">
-                  <h3 className="text-xl font-semibold text-zinc-900 dark:text-zinc-50 mb-2">Project One</h3>
-                  <p className="text-zinc-600 dark:text-zinc-400 mb-4">
-                    A brief description of this amazing project and what it does for users.
-                  </p>
-                  <div className="flex flex-wrap gap-2 mb-4">
-                    <span className="px-3 py-1 text-xs bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 rounded-full">React</span>
-                    <span className="px-3 py-1 text-xs bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 rounded-full">TypeScript</span>
-                    <span className="px-3 py-1 text-xs bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 rounded-full">Tailwind</span>
-                  </div>
-                  <div className="flex gap-4">
-                    <a href="#" className="text-sm text-blue-600 dark:text-blue-400 hover:underline">GitHub</a>
-                    <a href="#" className="text-sm text-blue-600 dark:text-blue-400 hover:underline">Live Demo</a>
-                  </div>
-                </div>
-              </div>
-
-              {/* Project Card 2 */}
-              <div className="bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-lg overflow-hidden hover:shadow-lg transition-shadow">
-                <div className="h-48 bg-linear-to-br from-purple-400 to-purple-600 dark:from-purple-600 dark:to-purple-800"></div>
-                <div className="p-6">
-                  <h3 className="text-xl font-semibold text-zinc-900 dark:text-zinc-50 mb-2">Project Two</h3>
-                  <p className="text-zinc-600 dark:text-zinc-400 mb-4">
-                    Another exciting project showcasing different skills and technologies.
-                  </p>
-                  <div className="flex flex-wrap gap-2 mb-4">
-                    <span className="px-3 py-1 text-xs bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 rounded-full">Next.js</span>
-                    <span className="px-3 py-1 text-xs bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 rounded-full">Node.js</span>
-                    <span className="px-3 py-1 text-xs bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 rounded-full">MongoDB</span>
-                  </div>
-                  <div className="flex gap-4">
-                    <a href="#" className="text-sm text-blue-600 dark:text-blue-400 hover:underline">GitHub</a>
-                    <a href="#" className="text-sm text-blue-600 dark:text-blue-400 hover:underline">Live Demo</a>
-                  </div>
-                </div>
-              </div>
-
-              {/* Project Card 3 */}
-              <div className="bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-lg overflow-hidden hover:shadow-lg transition-shadow">
-                <div className="h-48 bg-linear-to-br from-green-400 to-green-600 dark:from-green-600 dark:to-green-800"></div>
-                <div className="p-6">
-                  <h3 className="text-xl font-semibold text-zinc-900 dark:text-zinc-50 mb-2">Project Three</h3>
-                  <p className="text-zinc-600 dark:text-zinc-400 mb-4">
-                    A creative solution built with modern tools and best practices.
-                  </p>
-                  <div className="flex flex-wrap gap-2 mb-4">
-                    <span className="px-3 py-1 text-xs bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 rounded-full">Vue.js</span>
-                    <span className="px-3 py-1 text-xs bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 rounded-full">Firebase</span>
-                    <span className="px-3 py-1 text-xs bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 rounded-full">Figma</span>
-                  </div>
-                  <div className="flex gap-4">
-                    <a href="#" className="text-sm text-blue-600 dark:text-blue-400 hover:underline">GitHub</a>
-                    <a href="#" className="text-sm text-blue-600 dark:text-blue-400 hover:underline">Live Demo</a>
-                  </div>
-                </div>
-              </div>
+              <motion.div
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.2 }}
+                variants={fadeInUp}
+              >
+                <ProjectCard
+                  title="Fantasy Premier League App"
+                  description="Website and blog for fantasy football players in my league using a custom CMS built with Sanity"
+                  techStack={["React", "TypeScript", "Next.js", "Vercel", "Sanity CMS"]}
+                  imageSrc="/fpl.png"
+                  githubUrl="#"
+                  demoUrl="#"
+                />
+              </motion.div>
+              <motion.div
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.2 }}
+                variants={fadeInUp}
+              >
+                <ProjectCard
+                  title="Project Two"
+                  description="Another exciting project showcasing different skills and technologies."
+                  techStack={["Next.js", "Node.js", "MongoDB"]}
+                  imageSrc="/project-2.png"
+                  githubUrl="#"
+                  demoUrl="#"
+                />
+              </motion.div>
             </div>
           </div>
         </section>
 
         <section id="contact" className="min-h-[50vh] flex items-center justify-center px-6 md:px-16 py-20 bg-zinc-50 dark:bg-zinc-900">
-          <div className="max-w-3xl w-full text-center">
+          <motion.div
+            className="max-w-3xl w-full text-center"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
+            variants={fadeInUp}
+          >
             <h2 className="text-4xl font-bold text-zinc-900 dark:text-zinc-50 mb-6">Get In Touch</h2>
             <p className="text-lg text-zinc-600 dark:text-zinc-400 mb-8">
               I'm always open to new opportunities and collaborations. Feel free to reach out!
@@ -229,7 +198,7 @@ export default function Home() {
                 <Image src="/instagram.png" alt="Instagram" width={32} height={32} className="hover:opacity-80 transition-opacity"/>
               </a>
             </div>
-          </div>
+          </motion.div>
         </section>
       </main>
     </div>
