@@ -1,8 +1,14 @@
 "use client";
-import Image from "next/image";
 import { motion, type Variants } from "motion/react";
-import { useRef, useState, useEffect } from "react";
+import Image from "next/image";
+import { useRef } from "react";
+
 import ProjectCard from "./components/ProjectCard";
+import {
+	GitHubIcon,
+	InstagramIcon,
+	LinkedInIcon,
+} from "./components/SocialIcons";
 
 export default function Home() {
 	console.log(
@@ -44,28 +50,28 @@ export default function Home() {
 
 	const softSkills = [
 		{
-			icon: "💬",
+			icon: "📣",
 			title: "Communication",
 			description:
-				"I excel at translating complex technical concepts into clear, actionable insights for stakeholders and team members alike.",
+				"As an English Lit grad, communication comes naturally to me. I really enjoy making sure everyone working on a project is on the same page.",
 		},
 		{
 			icon: "👥",
 			title: "User Focus",
 			description:
-				"I prioritize user needs in every decision, leveraging UX research and testing to create intuitive, accessible experiences.",
+				"Starting my career as a UX designer, I've seen how important it is to prioritize user needs in every decision, creating intuitive, accessible experiences.",
 		},
 		{
 			icon: "🤝",
 			title: "Collaboration",
 			description:
-				"I thrive in cross-functional teams, facilitating workshops and fostering open dialogue to align diverse perspectives toward shared goals.",
+				"I thrive in cross-functional teams, communicating transparently and building stakeholder relationships to achieve shared goals.",
 		},
 		{
 			icon: "🧩",
 			title: "Problem Solving",
 			description:
-				"I approach challenges with curiosity and creativity, breaking down complex problems into manageable solutions that deliver real value.",
+				"I approach challenges with curiosity, and I'm not afraid to ask tricky questions to get to the root of a problem.",
 		},
 	];
 
@@ -107,7 +113,7 @@ export default function Home() {
 				{/* About Section */}
 				<section
 					id="about"
-					className="min-h-screen flex items-center justify-center px-6 md:px-16 py-16 md:py-32"
+					className="relative min-h-screen flex items-center justify-center px-6 md:px-16 py-16 md:py-32"
 				>
 					<motion.div
 						className="flex flex-col items-center gap-8 sm:flex-row sm:items-center sm:gap-12 max-w-7xl"
@@ -118,13 +124,13 @@ export default function Home() {
 					>
 						<div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
 							<h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-zinc-900 dark:text-zinc-50">
-								Hi, I'm Em
+								It's nice to meet you! My name is Em
 							</h1>
 							<p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-								I'm a UX fanatic and software developer based in London. I'm
+								I'm a UX nerd and software developer based in London. I'm
 								currently building micro-frontends for{" "}
 								<a
-									className="text-blue-600 dark:text-blue-400 hover:underline"
+									className="text-purple-900 dark:text-purple-800 hover:underline"
 									href="https://www.dunelm.com"
 									target="_blank"
 									rel="noopener noreferrer"
@@ -137,40 +143,25 @@ export default function Home() {
 									href="https://www.linkedin.com/in/emily-giblett/"
 									target="_blank"
 									rel="noopener noreferrer"
+									aria-label="LinkedIn"
 								>
-									<Image
-										src="/linkedin.png"
-										alt="LinkedIn"
-										width={32}
-										height={32}
-										className="hover:opacity-80 transition-opacity"
-									/>
+									<LinkedInIcon className="fill-purple-900 dark:fill-purple-500 hover:fill-purple-600 dark:hover:fill-purple-300 transition-colors" />
 								</a>
 								<a
 									href="https://github.com/gibbs-em"
 									target="_blank"
 									rel="noopener noreferrer"
+									aria-label="GitHub"
 								>
-									<Image
-										src="/github.png"
-										alt="GitHub"
-										width={32}
-										height={32}
-										className="hover:opacity-80 transition-opacity"
-									/>
+									<GitHubIcon className="fill-purple-900 dark:fill-purple-500 hover:fill-purple-600 dark:hover:fill-purple-300 transition-colors" />
 								</a>
 								<a
 									href="https://www.instagram.com/gibbo_codes/"
 									target="_blank"
 									rel="noopener noreferrer"
+									aria-label="Instagram"
 								>
-									<Image
-										src="/instagram.png"
-										alt="Instagram"
-										width={32}
-										height={32}
-										className="hover:opacity-80 transition-opacity"
-									/>
+									<InstagramIcon className="fill-purple-900 dark:fill-purple-500 hover:fill-purple-600 dark:hover:fill-purple-300 transition-colors" />
 								</a>
 							</div>
 						</div>
@@ -188,18 +179,34 @@ export default function Home() {
 						>
 							<Image
 								src="/portfolio-profile.png"
+								loading="eager"
 								alt="A picture of Em surrounded by cartoon clouds"
 								width={600}
 								height={600}
 							/>
 						</motion.div>
 					</motion.div>
+
+					{/* Bouncing scroll indicator */}
+					<motion.div
+						className="absolute bottom-8 left-1/2 -translate-x-1/2 text-4xl hidden md:block"
+						animate={{
+							y: [0, 15, 0],
+						}}
+						transition={{
+							duration: 1.5,
+							repeat: Infinity,
+							ease: "easeInOut",
+						}}
+					>
+						<a href="#skills">👇</a>
+					</motion.div>
 				</section>
 
 				{/* Skills Section */}
 				<section
 					id="skills"
-					className="min-h-screen flex items-center justify-center px-6 md:px-16 py-12 bg-zinc-50 dark:bg-zinc-900"
+					className="min-h-screen flex items-center justify-center px-6 md:px-16 py-20 bg-zinc-50 dark:bg-zinc-900"
 				>
 					<motion.div
 						className="max-w-7xl w-full"
@@ -397,7 +404,7 @@ export default function Home() {
 						<h2 className="text-4xl font-bold text-zinc-900 dark:text-zinc-50 mb-12 text-center">
 							Projects
 						</h2>
-						<div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+						<div className="grid grid-cols-1 gap-8 max-w-2xl mx-auto">
 							<motion.div
 								initial="hidden"
 								whileInView="visible"
@@ -415,23 +422,8 @@ export default function Home() {
 										"Sanity CMS",
 									]}
 									imageSrc="/fpl.png"
-									githubUrl="#"
-									demoUrl="#"
-								/>
-							</motion.div>
-							<motion.div
-								initial="hidden"
-								whileInView="visible"
-								viewport={{ once: true, amount: 0.2 }}
-								variants={fadeInUp}
-							>
-								<ProjectCard
-									title="Project Two"
-									description="Another exciting project showcasing different skills and technologies."
-									techStack={["Next.js", "Node.js", "MongoDB"]}
-									imageSrc="/project-2.png"
-									githubUrl="#"
-									demoUrl="#"
+									githubUrl="https://github.com/gibbs-em/bobby-bets-2"
+									demoUrl="https://bobbybets.org/"
 								/>
 							</motion.div>
 						</div>
@@ -467,40 +459,25 @@ export default function Home() {
 								href="https://www.linkedin.com/in/emily-giblett/"
 								target="_blank"
 								rel="noopener noreferrer"
+								aria-label="LinkedIn"
 							>
-								<Image
-									src="/linkedin.png"
-									alt="LinkedIn"
-									width={32}
-									height={32}
-									className="hover:opacity-80 transition-opacity"
-								/>
+								<LinkedInIcon className="fill-purple-900 dark:fill-purple-400 hover:fill-purple-700 dark:hover:fill-purple-300 transition-colors" />
 							</a>
 							<a
 								href="https://github.com/gibbs-em"
 								target="_blank"
 								rel="noopener noreferrer"
+								aria-label="GitHub"
 							>
-								<Image
-									src="/github.png"
-									alt="GitHub"
-									width={32}
-									height={32}
-									className="hover:opacity-80 transition-opacity"
-								/>
+								<GitHubIcon className="fill-purple-900 dark:fill-purple-400 hover:fill-purple-700 dark:hover:fill-purple-300 transition-colors" />
 							</a>
 							<a
 								href="https://www.instagram.com/gibbo_codes/"
 								target="_blank"
 								rel="noopener noreferrer"
+								aria-label="Instagram"
 							>
-								<Image
-									src="/instagram.png"
-									alt="Instagram"
-									width={32}
-									height={32}
-									className="hover:opacity-80 transition-opacity"
-								/>
+								<InstagramIcon className="fill-purple-900 dark:fill-purple-400 hover:fill-purple-700 dark:hover:fill-purple-300 transition-colors" />
 							</a>
 						</div>
 					</motion.div>
